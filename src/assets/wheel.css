@@ -1,0 +1,62 @@
+.container {
+    width: 200px;
+    height: 200px;
+    background-color: lightgrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.menu-wheel {
+    margin: 0;
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    background-color: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.okay {
+    width: 45%;
+    height: 45%;
+    border-radius: inherit;
+    background: linear-gradient(0deg, rgb(226, 223, 223), grey);
+    z-index: 1;
+}
+
+.menu-options {
+    font-size: 0.7em;
+    color: grey;
+    position: absolute;
+}
+
+.left {
+    top: 80px;
+    left: 12px;
+}
+
+.right {
+    top: 80px;
+    right: 12px;
+}
+
+.top {
+    top: 13px;
+    left: 72px;
+    font-weight: 700;
+    font-size: medium;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.bottom {
+    font-size: 0.6em;
+    bottom: 10px;
+    left: 85px;
+}
