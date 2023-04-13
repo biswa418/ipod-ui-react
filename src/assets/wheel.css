@@ -1,7 +1,7 @@
 .container {
     width: 200px;
     height: 200px;
-    background-color: lightgrey;
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;

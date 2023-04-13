@@ -38,7 +38,8 @@ class App extends React.Component {
         {isLoading && <Loader />}
         {!isLoading &&
           < div className="App" >
-            <Screen />
+            <Screen
+            />
             <Wheel />
           </div >
         }
