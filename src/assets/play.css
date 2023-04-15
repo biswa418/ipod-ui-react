@@ -1,0 +1,6 @@
+.playbox {
+    background: rgb(191, 234, 247);
+    width: 100%;
+    height: 100%;
+    display: flexbox;
+}

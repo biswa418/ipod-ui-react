@@ -15,10 +15,10 @@ const Menu = (props) => {
 
     props.selected < 5 ? selected = "mainMenu" : selected = selected;
 
-    const mainMenu = selected == "mainMenu";
-    const isGames = selected == "isGames";
-    const isSetting = selected == "isSetting";
-    const nowPlaying = selected == "NowPlaying";
+    const mainMenu = selected === "mainMenu";
+    const isGames = selected === "isGames";
+    const isSetting = selected === "isSetting";
+    const nowPlaying = selected === "NowPlaying";
 
     // console.log(mainMenu, isGames, isSetting);
 
