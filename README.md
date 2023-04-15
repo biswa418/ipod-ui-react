@@ -1,5 +1,5 @@
 <div align="center">
-      <h1> <img src="https://github.com/biswa418/ipod-ui-react" width="80px"><br/>iPod UI - using React</h1>
+      <h1> iPod UI - using React</h1>
      </div>
 
 
