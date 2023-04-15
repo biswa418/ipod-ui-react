@@ -126,18 +126,21 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
+    //load the component and stop the loader
     await this.setState(prevState => ({
       ...prevState,
       isLoading: false,
       menuId: 0
     }));
 
-
     //get all buttons
     const controlWheel = this.controlWheel;
     const that = this;
     const wheel = document.getElementById("wheel");
     const activeRegion = ZingTouch.Region(wheel);
+    var longTap = new ZingTouch.Tap({
+      maxDelay: 7000
+    }); //longtap happens -- for seeking the song
     const menuBtn = document.querySelector('.top');
     const rightBtn = document.querySelector('.right');
     const playBtn = document.querySelector('.bottom');
@@ -146,6 +149,45 @@ class App extends React.Component {
 
     activeRegion.bind(menuBtn, 'tap', function (e) {
       that.clickMenu();
+    });
+
+    activeRegion.bind(rightBtn, longTap, async function (e) {
+      if (e.detail.interval > 200) {
+        let cSong = that.state.currentSong;
+
+        if (cSong.paused) return; //if song is not playing return
+        cSong.pause();
+
+        cSong.currentTime += 10; // seekForward 10 sec
+
+        if (cSong.currentTime >= cSong.duration) {
+          that.nextSong();
+        }
+
+        cSong.play();
+        return;
+      }
+
+      that.nextSong();
+    });
+
+    activeRegion.bind(leftBtn, longTap, function (e) {
+      if (e.detail.interval > 200) {
+        let cSong = that.state.currentSong;
+
+        if (cSong.paused) return; //if song is not playing return
+        cSong.pause();
+
+        cSong.currentTime -= 10; // seekForward 10 sec
+
+        if (cSong.currentTime < 0) {
+          that.previousSong();
+        }
+
+        cSong.play();
+        return;
+      }
+      that.previousSong();
     });
 
     activeRegion.bind(playBtn, 'tap', function () {
@@ -161,13 +203,80 @@ class App extends React.Component {
     });
   }
 
+  //start playing
   play = async () => {
     let cSong = this.state.currentSong;
     cSong.paused ? cSong.play() : cSong.pause();
   }
 
+  //go to next Song
+  nextSong = async () => {
+    let cSong = this.state.currentSong;
+
+    //first stop the first song
+    if (!cSong.paused) {
+      cSong.pause();
+    } else {
+      return;
+    }
+
+    if (this.currentSongId + 1 >= this.songList.length) {
+      this.currentSongId = 0;
+    } else {
+      this.currentSongId++;
+    }
+
+    let nextSong = new Audio(this.songList[this.currentSongId]);
+
+    nextSong.addEventListener('loadeddata', async () => {
+      console.log(nextSong.duration);
+
+      await this.setState(prevState => ({
+        ...prevState,
+        currentSong: nextSong
+      }));
+
+      nextSong.play();
+    });
+  }
+
+  //play previous song
+  previousSong = async () => {
+    let cSong = this.state.currentSong;
+
+    //first stop the first song
+    if (!cSong.paused) {
+      cSong.pause();
+    } else {
+      return;
+    }
+
+    if (this.currentSongId - 1 < 0) {
+      this.currentSongId = this.songList.length - 1;
+    } else {
+      this.currentSongId--;
+    }
+
+    let nextSong = await new Audio(this.songList[this.currentSongId]);
+
+    if (cSong.currentTime > 5) {
+      cSong.currentTime = 0;
+      this.currentSongId++;
+    } else {
+      cSong = nextSong;
+    }
+
+
+    await this.setState(prevState => ({
+      ...prevState,
+      currentSong: cSong
+    }));
+
+    cSong.play();
+  }
+
   render() {
-    let { isLoading, menuId } = this.state;
+    let { isLoading, menuId, currentSong } = this.state;
 
     return (
       <>
@@ -177,8 +286,8 @@ class App extends React.Component {
             <Screen
               menuId={menuId}
               keys={menuId}
-              currentSong={this.currentSong}
-              play={this.play}
+              currentSong={this.currentSongId}
+              play={currentSong}
             />
             <Wheel />
           </div >

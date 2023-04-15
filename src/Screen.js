@@ -4,9 +4,9 @@ import Menu from './Menu';
 import Song from './Song';
 
 const Screen = (props) => {
-    let { menuId, currentSong } = props;
+    let { menuId, keys, currentSong, play } = props;
     menuId = parseInt(menuId);
-    currentSong = parseInt(currentSong);
+    let currentSongId = parseInt(currentSong);
 
     let ismusicSection = (menuId === 4 || menuId >= 8);
 
@@ -14,7 +14,7 @@ const Screen = (props) => {
         <>
             <div className="screen">
                 {
-                    ismusicSection ? <Song selected={menuId} currentSong={currentSong} /> : <Menu selected={menuId} />
+                    ismusicSection ? <Song selected={menuId} currentSong={currentSongId} play={play} /> : <Menu selected={menuId} currentSong={currentSongId} play={play} />
                 }
             </div>
         </>

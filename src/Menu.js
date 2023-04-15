@@ -11,6 +11,8 @@ const Menu = (props) => {
         7: "NowPlaying"
     }
 
+    let { currentSong, play } = props;
+
     let selected = values[props.selected]; //selected value
 
     props.selected < 5 ? selected = "mainMenu" : selected = selected;
@@ -71,7 +73,10 @@ const Menu = (props) => {
 
             {
                 nowPlaying &&
-                <Play />
+                <Play
+                    play={play}
+                    currentSong={currentSong}
+                />
             }
         </>
     );
