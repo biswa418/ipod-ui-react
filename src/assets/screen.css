@@ -1,3 +1,4 @@
+/* main screen */
 .screen {
     width: 90%;
     height: 40%;
@@ -11,6 +12,7 @@
     position: relative;
 }
 
+/* menu options */
 .menu {
     font-size: 18px;
     width: 55%;
@@ -26,6 +28,7 @@
     user-select: none;
 }
 
+/* which one is active on the screen */
 .active {
     background-color: #13b4fe;
     color: white;

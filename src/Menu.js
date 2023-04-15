@@ -4,6 +4,7 @@ import Play from "./Play";
 
 const Menu = (props) => {
 
+    //possible options from 1st menu
     const values = {
         0: "mainMenu",
         5: "isGames",
@@ -11,20 +12,21 @@ const Menu = (props) => {
         7: "NowPlaying"
     }
 
+    //get the song and it's id from the props
     let { currentSong, play } = props;
 
     let selected = values[props.selected]; //selected value
 
     props.selected < 5 ? selected = "mainMenu" : selected = selected;
 
+    //using menu options get the selected value
     const mainMenu = selected === "mainMenu";
     const isGames = selected === "isGames";
     const isSetting = selected === "isSetting";
     const nowPlaying = selected === "NowPlaying";
 
-    // console.log(mainMenu, isGames, isSetting);
-
     return (
+        //load individual menu
         <>
             {
                 mainMenu &&

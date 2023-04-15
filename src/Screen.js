@@ -8,9 +8,9 @@ const Screen = (props) => {
     menuId = parseInt(menuId);
     let currentSongId = parseInt(currentSong);
 
+    //check if the section is menuSection or not
+    // 0-3 --> music, games, settings, nowPlaying - 4-7 --> Music menu (all, artist, albums) - 7+ --> music player
     let ismusicSection = (menuId === 4 || menuId >= 8);
-
-    console.log(menuId);
 
     return (
         <>

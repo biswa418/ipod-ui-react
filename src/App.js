@@ -14,8 +14,8 @@ class App extends React.Component {
     super();
     this.state = {
       isLoading: true,
-      menuId: 0, //which page to load 0-4 --> music, games, settings, nowPlaying - 4-7 --> Music menu
-      currentSong: new Audio(song1)
+      menuId: 0, //which page to load 0-3 --> music, games, settings, nowPlaying - 4-7 --> Music menu (all, artist, albums) - 7+ --> music player
+      currentSong: new Audio(song1) //load first song
     }
     this.activeId = 0; //which one of the menu is selected
     this.songList = [song1, song2];
@@ -77,7 +77,18 @@ class App extends React.Component {
           return;
         }
       }
+      return;
     }
+    // //get the song
+    // let cSong = this.state.currentSong;
+
+    // if (Math.abs(e.detail.distanceFromOrigin) > 15) {
+    //   if (e.detail.distanceFromLast > 0) {
+    //     cSong.volume < 1 ? cSong.volume += 0.2 : cSong.volume = cSong.volume;
+    //   } else {
+    //     cSong.volume > 0 ? cSong.volume -= 0.2 : cSong.volume = cSong.volume;
+    //   }
+    // }
   }
 
   //menu button is clicked
