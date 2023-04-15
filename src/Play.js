@@ -10,7 +10,7 @@ const Play = (props) => {
     maxSeconds = Math.floor(duration % 60);
 
     //console.log(play);
-    play.ontimeupdate = function (e) {
+    play.ontimeupdate = function () {
         let progressBar = document.getElementById('progressed');
         progressBar.style.width = Math.floor(100 * (play.currentTime / play.duration)) + "%";
         //calculate time

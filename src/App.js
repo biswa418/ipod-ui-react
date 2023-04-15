@@ -94,7 +94,11 @@ class App extends React.Component {
     }
 
     if (currentmenuId > 3 && currentmenuId <= 7) {
-      currentmenuId -= 4;
+      currentmenuId = 0;
+    }
+
+    if (currentmenuId > 7 && currentmenuId <= 10) {
+      currentmenuId = 4;
     }
 
     currentmenuId < 0 ? currentmenuId = 0 : currentmenuId = currentmenuId;

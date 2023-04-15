@@ -10,6 +10,8 @@ const Screen = (props) => {
 
     let ismusicSection = (menuId === 4 || menuId >= 8);
 
+    console.log(menuId);
+
     return (
         <>
             <div className="screen">
