@@ -8,6 +8,7 @@
     margin-bottom: 10px;
     border-radius: 5px;
     border: 5px solid #212433;
+    position: relative;
 }
 
 .menu {
@@ -50,4 +51,12 @@ li {
 h3 {
     padding-top: 5px;
     font-size: large;
+}
+
+.heading {
+    position: absolute;
+    color: black;
+    left: 5px;
+    top: 0;
+    text-transform: uppercase;
 }

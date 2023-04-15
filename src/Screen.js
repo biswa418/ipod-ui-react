@@ -1,35 +1,24 @@
 import React from "react";
 import './assets/screen.css';
-import Loader from "./Loader";
 import Menu from './Menu';
+import Song from './Song';
 
-class screen extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            loading: true
-        }
-    }
+const Screen = (props) => {
+    let { menuId } = props;
+    menuId = parseInt(menuId);
 
-    componentDidMount() {
-        this.setState({
-            loading: false
-        });
-    }
+    let ismusicSection = (menuId === 4 || menuId >= 8);
 
-    render() {
-        let { loading } = this.state;
-
-        return (
-            <>
-                {loading && <Loader />}
-
-                <div className="screen">
-                    <Menu />
-                </div>
-            </>
-        );
-    }
+    return (
+        <>
+            <div className="screen">
+                {
+                    ismusicSection ? <Song selected={menuId} /> : <Menu selected={menuId} />
+                }
+            </div>
+        </>
+    );
 }
 
-export default screen;
+
+export default Screen;
